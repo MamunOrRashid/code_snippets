@@ -1,0 +1,16 @@
+Let 2 numbers num1 and num2__ ei 2tar moddhe max konta ber krte hbe__
+Ei khetre amra if else use krtam eivabe,
+if(num1 > num2)
+{
+ Max = num1;
+}
+else
+{
+ Max = num2;
+}
+
+So conditional operator use krte beparta hbe eirokom...
+
+Max = num1 > num2 ? num1 : num2 ;
+
+Hope u understand 

@@ -1,0 +1,45 @@
+4
+
+01/01/2007 
+10/02/2007
+
+09/06/2007 
+28/02/1871
+
+12/11/2007 
+01/01/1984
+
+28/02/2005 
+29/02/2004
+#include <stdio.h>
+int main()
+{
+    int d1, m1, y1, d2, m2, y2, T, total = 0;
+    scanf("%d", &T);
+    while(T--)
+    {
+        scanf("%d/%d/%d", &d1, &m1, &y1);
+        scanf("%d/%d/%d", &d2, &m2, &y2);
+        int Ans = y1-y2;
+        if(y1 < y2)
+        {
+            printf("Case #%d: Invalid birth date\n", ++total);
+            continue;
+        }
+        if(y1 == y2)
+        {
+            if(m1 < m2 || (m1 == m2 && d1 < d2))
+            {
+                printf("Case #%d: Invalid birth date\n", ++total);
+                continue;
+            }
+        }
+        else
+        {
+            if(m1 < m2 || (m1 == m2 && d1 < d2))    Ans--;
+        }
+        if(Ans > 130)   printf("Case #%d: Check birth date\n", ++total);
+        else    printf("Case #%d: %d\n", ++total, Ans);
+    }
+    return 0;
+}

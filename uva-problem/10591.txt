@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c,d,e,f,n,N,i,m,p,temp,sum;
+    scanf("%d",&n);
+
+    for(i=1; i<=n; i++)
+    {
+        scanf("%d",&N);
+        p=N;
+        b=N;
+        int sum=0;
+        while(sum!=1)
+        {
+            sum=0;
+            while(b>0)
+            {
+                d=b/10;
+                f=b%10;
+                sum=sum+f*f;
+                b=d;
+            }
+            b=sum;
+            if(sum<10)
+            {
+                if(b==1)
+                {
+                    printf("Case #%d: %d is a Happy number.\n",i,p);
+                }
+                else if(b!=1)
+                {
+                    printf("Case #%d: %d is an Unhappy number.\n",i,p);
+                }
+                break;
+
+            }
+        }
+    }
+    return 0;

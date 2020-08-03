@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html class=" js" prefix="og: http://ogp.me/ns#" lang="en-US"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Merge Sort - GeeksQuiz</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://geeksquiz.com/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://d3guuwhmbtzoxp.cloudfront.net/wp-content/themes/iconic-one/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+<!-- This site is optimized with the Yoast SEO plugin v3.1.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="Merge%20Sort%20-%20GeeksQuiz_files/a_006.htm">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Merge Sort - GeeksQuiz">
+<meta property="og:description" content="MergeSort is a Divide and Conquer algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves. The merg() function is used for merging two halves. The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the… Read More »">
+<meta property="og:url" content="http://geeksquiz.com/merge-sort/">
+<meta property="og:site_name" content="GeeksQuiz">
+<meta property="article:section" content="Searching and Sorting">
+<meta property="article:published_time" content="2013-03-15T06:51:07+00:00">
+<meta property="article:modified_time" content="2016-04-02T10:49:37+00:00">
+<meta property="og:updated_time" content="2016-04-02T10:49:37+00:00">
+<meta property="og:image" content="http://d3guuwhmbtzoxp.cloudfront.net/wp-content/uploads/2013/03/Merge-Sort.png">
+<!-- / Yoast SEO plugin. -->
+
+		<script src="Merge%20Sort%20-%20GeeksQuiz_files/async-ads.js" async=""></script><script src="Merge%20Sort%20-%20GeeksQuiz_files/ga.js" async="" type="text/javascript"></script><script src="Merge%20Sort%20-%20GeeksQuiz_files/ca-pub-3708767432475742.js"></script><script src="Merge%20Sort%20-%20GeeksQuiz_files/sdk.js" id="facebook-jssdk"></script><script src="Merge%20Sort%20-%20GeeksQuiz_files/cse.js" async="" type="text/javascript"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/geeksquiz.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.7"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/wp-emoji-release.js"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="mtq_CoreStyleSheets-css" href="Merge%20Sort%20-%20GeeksQuiz_files/mtq_core_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="mtq_ThemeStyleSheets-css" href="Merge%20Sort%20-%20GeeksQuiz_files/mtq_theme_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-quicklatex-format-css" href="Merge%20Sort%20-%20GeeksQuiz_files/quicklatex-format.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-pagenavi-css" href="Merge%20Sort%20-%20GeeksQuiz_files/pagenavi-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="themonic-fonts-css" href="Merge%20Sort%20-%20GeeksQuiz_files/css.css" type="text/css" media="all">
+<link rel="stylesheet" id="themonic-style-css" href="Merge%20Sort%20-%20GeeksQuiz_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="custom-style-css" href="Merge%20Sort%20-%20GeeksQuiz_files/custom.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='themonic-ie-css'  href='http://d3guuwhmbtzoxp.cloudfront.net/wp-content/themes/iconic-one/css/ie.css?ver=20130305' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/jquery.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/jquery-migrate.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/script.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/wp-quicklatex-frontend.js"></script>
+<meta name="generator" content="WordPress 4.2.7">
+
+<!-- Bad Behavior 2.2.18 run time: 0.735 ms -->
+<script type="text/javascript">
+<!--
+function bb2_addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+bb2_addLoadEvent(function() {
+	for ( i=0; i < document.forms.length; i++ ) {
+		if (document.forms[i].method == 'post') {
+			var myElement = document.createElement('input');
+			myElement.setAttribute('type', 'hidden');
+			myElement.name = 'bb2_screener_';
+			myElement.value = '1461345475 128.210.106.68';
+			document.forms[i].appendChild(myElement);
+		}
+	}
+});
+// --></script>
+		<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<link href="Merge%20Sort%20-%20GeeksQuiz_files/shCore.css" type="text/css" rel="stylesheet"><link href="Merge%20Sort%20-%20GeeksQuiz_files/shThemeDefault.css" type="text/css" rel="stylesheet"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<script src="Merge%20Sort%20-%20GeeksQuiz_files/embed.js" async="" type="text/javascript"></script><script src="Merge%20Sort%20-%20GeeksQuiz_files/count.js" type="text/javascript" async=""></script><script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/jsapi"></script><link rel="stylesheet" href="Merge%20Sort%20-%20GeeksQuiz_files/defaulten.css" type="text/css"><link rel="stylesheet" href="Merge%20Sort%20-%20GeeksQuiz_files/default.css" type="text/css"><script src="Merge%20Sort%20-%20GeeksQuiz_files/defaulten.js" type="text/javascript"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v2/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style><style type="text/css">
+.gsc-control-cse {
+font-family: Arial, sans-serif;
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-control-cse .gsc-table-result {
+font-family: Arial, sans-serif;
+}
+input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
+border-color: #D9D9D9;
+}
+input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
+border-color: #666666;
+background-color: #CECECE;
+background-image: none;
+filter: none;
+}
+.gsc-tabHeader.gsc-tabhInactive {
+border-color: #E9E9E9;
+background-color: #E9E9E9;
+}
+.gsc-tabHeader.gsc-tabhActive {
+border-color: #FF9900;
+border-bottom-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-tabsArea {
+border-color: #FF9900;
+}
+.gsc-webResult.gsc-result,
+.gsc-results .gsc-imageResult {
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-webResult.gsc-result:hover,
+.gsc-imageResult:hover {
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gs-webResult.gs-result a.gs-title:link,
+.gs-webResult.gs-result a.gs-title:link b,
+.gs-imageResult a.gs-title:link,
+.gs-imageResult a.gs-title:link b {
+color: #0000CC;
+}
+.gs-webResult.gs-result a.gs-title:visited,
+.gs-webResult.gs-result a.gs-title:visited b,
+.gs-imageResult a.gs-title:visited,
+.gs-imageResult a.gs-title:visited b {
+color: #0000CC;
+}
+.gs-webResult.gs-result a.gs-title:hover,
+.gs-webResult.gs-result a.gs-title:hover b,
+.gs-imageResult a.gs-title:hover,
+.gs-imageResult a.gs-title:hover b {
+color: #0000CC;
+}
+.gs-webResult.gs-result a.gs-title:active,
+.gs-webResult.gs-result a.gs-title:active b,
+.gs-imageResult a.gs-title:active,
+.gs-imageResult a.gs-title:active b {
+color: #0000CC;
+}
+.gsc-cursor-page {
+color: #0000CC;
+}
+a.gsc-trailing-more-results:link {
+color: #0000CC;
+}
+.gs-webResult .gs-snippet,
+.gs-imageResult .gs-snippet,
+.gs-fileFormatType {
+color: #000000;
+}
+.gs-webResult div.gs-visibleUrl,
+.gs-imageResult div.gs-visibleUrl {
+color: #008000;
+}
+.gs-webResult div.gs-visibleUrl-short {
+color: #008000;
+}
+.gs-webResult div.gs-visibleUrl-short {
+display: none;
+}
+.gs-webResult div.gs-visibleUrl-long {
+display: block;
+}
+.gs-promotion div.gs-visibleUrl-short {
+display: none;
+}
+.gs-promotion div.gs-visibleUrl-long {
+display: block;
+}
+.gsc-cursor-box {
+border-color: #FFFFFF;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+border-color: #E9E9E9;
+background-color: #FFFFFF;
+color: #0000CC;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+border-color: #FF9900;
+background-color: #FFFFFF;
+color: #0000CC;
+}
+.gsc-webResult.gsc-result.gsc-promotion {
+border-color: #336699;
+background-color: #FFFFFF;
+}
+.gsc-completion-title {
+color: #0000CC;
+}
+.gsc-completion-snippet {
+color: #000000;
+}
+.gs-promotion a.gs-title:link,
+.gs-promotion a.gs-title:link *,
+.gs-promotion .gs-snippet a:link {
+color: #0000CC;
+}
+.gs-promotion a.gs-title:visited,
+.gs-promotion a.gs-title:visited *,
+.gs-promotion .gs-snippet a:visited {
+color: #0000CC;
+}
+.gs-promotion a.gs-title:hover,
+.gs-promotion a.gs-title:hover *,
+.gs-promotion .gs-snippet a:hover {
+color: #0000CC;
+}
+.gs-promotion a.gs-title:active,
+.gs-promotion a.gs-title:active *,
+.gs-promotion .gs-snippet a:active {
+color: #0000CC;
+}
+.gs-promotion .gs-snippet,
+.gs-promotion .gs-title .gs-promotion-title-right,
+.gs-promotion .gs-title .gs-promotion-title-right * {
+color: #000000;
+}
+.gs-promotion .gs-visibleUrl,
+.gs-promotion .gs-visibleUrl-short {
+color: #008000;
+}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-moz-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gscsep_a{display:none}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:3px}.gssb_e{border:0}.gssb_l{margin:5px 0}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><script src="Merge%20Sort%20-%20GeeksQuiz_files/C6ADVKE.json" type="text/javascript" id="_fbn_projs"></script></head>
+<body class="single single-post postid-2783 single-format-standard custom-background custom-background-white custom-font-enabled">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+					<hgroup>
+			<a href="http://geeksquiz.com/" title="GeeksQuiz" rel="home">GeeksQuiz</a>
+				<br ...=""> <a class="site-description">Computer Science Quizzes for Geeks !</a>
+		</hgroup>
+<div style="float:right;">
+<hgroup style="float:right;">
+
+
+<strong><a style="padding:0px 25px 0px 0px; font-size:25px; font-family: Georgia,Times New Roman,Times,Helvetica,Arial,serif; font-weight: lighter; letter-spacing: -0.05em; text-decoration:none;" href="http://geeksquiz.com/suggest/">Suggest</a></strong>
+
+<strong><a style="padding:0px 25px 0px 0px; font-size:25px; font-family: Georgia,Times New Roman,Times,Helvetica,Arial,serif; font-weight: lighter; letter-spacing: -0.05em; text-decoration:none;" href="http://practice.geeksforgeeks.org/">Practice</a></strong>
+
+<a style="padding:0px 20px 0px 0px; font-size:25px; font-family: Georgia,Times New Roman,Times,Helvetica,Arial,serif; font-weight: lighter; letter-spacing: -0.05em; text-decoration:none;" href="http://geeksquiz.com/placements/">Placements</a>
+
+<a style="padding:0px 20px 0px 0px; font-size:25px; font-family: Georgia,Times New Roman,Times,Helvetica,Arial,serif; font-weight: lighter; letter-spacing: -0.05em; text-decoration:none;" href="http://gatecs.geeksquiz.com/">GATE Q&amp;A</a>
+
+<a style="padding:0px 20px 0px 0px; font-size:25px; font-family: Georgia,Times New Roman,Times,Helvetica,Arial,serif; font-weight: lighter; letter-spacing: -0.05em; text-decoration:none;" href="http://www.geeksforgeeks.org/">GeeksforGeeks</a>
+
+</hgroup>
+<br>
+<span style="display:inline-block; width:300px;float:right;">
+<script>
+  (function() {
+    var cx = '015538222170377750104:ivcgdzughm8';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-en"><div dir="ltr" class="gsc-control-wrapper-cse"><form accept-charset="utf-8" class="gsc-search-box gsc-search-box-tools"><table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-input"><div id="gsc-iw-id1" class="gsc-input-box "><table class="gstl_50 " id="gs_id50" style="width: 100%; padding: 0px;" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsib_a" id="gs_tti50"><input spellcheck="false" dir="ltr" id="gsc-i-id1" style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; outline: medium none; background: rgb(255, 255, 255) url(&quot;http://www.google.com/cse/static/en/google_custom_search_watermark.gif&quot;) no-repeat scroll left center;" title="search" name="search" class="gsc-input" size="10" autocomplete="off" type="text"></td><td class="gsib_b"><div dir="ltr" id="gs_st50" class="gsst_b"><a style="display: none;" href="javascript:void(0)" class="gsst_a"><span id="gs_cb50" class="gscb_a">×</span></a></div></td></tr></tbody></table></div><input id="bgresponse" name="bgresponse" type="hidden"></td><td class="gsc-search-button"><input title="search" class="gsc-search-button gsc-search-button-v2" src="Merge%20Sort%20-%20GeeksQuiz_files/search_box_icon.png" type="image"></td><td class="gsc-clear-button"><div title="clear results" class="gsc-clear-button">&nbsp;</div></td></tr></tbody></table><table class="gsc-branding" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img"><img class="gsc-branding-img" src="Merge%20Sort%20-%20GeeksQuiz_files/small-logo.png"></td></tr></tbody></table></form><div class="gsc-results-wrapper-overlay"><div tabindex="0" class="gsc-results-close-btn"></div><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table class="gsc-above-wrapper-area-container" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td><td class="gsc-orderby-container"><div class="gsc-orderby-invisible"><div class="gsc-orderby-label gsc-inline-block">Sort by:</div><div class="gsc-option-menu-container gsc-inline-block"><div class="gsc-selected-option-container gsc-inline-block"><div class="gsc-selected-option">Relevance</div><div class="gsc-option-selector"></div></div><div class="gsc-option-menu-invisible"><div class="gsc-option-menu-item gsc-option-menu-item-highlighted"><div class="gsc-option">Relevance</div></div><div class="gsc-option-menu-item"><div class="gsc-option">Date</div></div></div></div></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table class="gsc-resultsHeader" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div title="show one result" class="gsc-result-selector gsc-one-result">&nbsp;</div><div title="show more results" class="gsc-result-selector gsc-more-results">&nbsp;</div><div title="show all results" class="gsc-result-selector gsc-all-results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div tabindex="0" class="gsc-modal-background-image"></div></div></div></div>
+
+<style type="text/css">
+
+  .gsc-control-cse {
+     padding: 0px 10px;
+  } 
+
+  .gsc-control-cse {
+    font-family: "Trebuchet MS", sans-serif;
+    /*border-color: #E1F3DA;*/
+    /*background-color: #E1F3DA;*/
+  }
+  input.gsc-input {
+    border-color: #94CC7A;
+  }
+  input.gsc-search-button {
+    border-color: #94CC7A;
+    background-color: #4CB96B;
+    margin-top:15px;
+  }
+  .gsc-tabHeader.gsc-tabhInactive {
+    border-color: #A9DA92;
+    background-color: #FFFFFF;
+  }
+  .gsc-tabHeader.gsc-tabhActive {
+    border-color: #A9DA92;
+    background-color: #A9DA92;
+  }
+  .gsc-tabsArea {
+    border-color: #A9DA92;
+  }
+
+  .gsc-webResult.gsc-result {
+    border-color: #A9DA92;
+    background-color: #FFFFFF;
+  }
+  .gsc-webResult.gsc-result:hover {
+    border-color: #A9DA92;
+    background-color: #FFFFFF;
+  }
+  .gs-webResult.gs-result a.gs-title:link,
+  .gs-webResult.gs-result a.gs-title:link b{
+    color: #009900;
+  }
+ .gs-title{
+	height: 25px !important;
+}
+  .gs-webResult.gs-result a.gs-title:visited,
+  .gs-webResult.gs-result a.gs-title:visited b {
+    color: #009900;
+  }
+  .gs-webResult.gs-result a.gs-title:hover,
+  .gs-webResult.gs-result a.gs-title:hover b {
+    color: #003300;
+  }
+  .gs-webResult.gs-result a.gs-title:active,
+  .gs-webResult.gs-result a.gs-title:active b {
+    color: #009900;
+  }
+  .gsc-cursor-page {
+    color: #009900;
+  }
+  a.gsc-trailing-more-results:link {
+    color: #009900;
+  }
+  .gs-webResult.gs-result .gs-snippet {
+    color: #454545;
+  }
+  .gs-webResult.gs-result .gs-visibleUrl {
+    color: #33cc00;
+  }
+  .gs-webResult.gs-result .gs-visibleUrl-short {
+    color: #33cc00;
+  }
+  .gs-webResult.gs-result .gs-visibleUrl-short {
+    display: none;
+  }
+  .gs-webResult.gs-result .gs-visibleUrl-long {
+    display: block;
+  }
+  .gsc-cursor-box {
+    border-color: #A9DA92;
+  }
+  .gsc-results .gsc-cursor-page {
+    border-color: #A9DA92;
+    background-color: #FFFFFF;
+  }
+  .gsc-results .gsc-cursor-page.gsc-cursor-current-page {
+    border-color: #A9DA92;
+    background-color: #A9DA92;
+  }
+  .gs-promotion.gs-result {
+    border-color: #94CC7A;
+    background-color: #CBE8B4;
+  }
+  .gs-promotion.gs-result a.gs-title:link {
+    color: #0066CC;
+  }
+  .gs-promotion.gs-result a.gs-title:visited {
+    color: #0066CC;
+  }
+  .gs-promotion.gs-result a.gs-title:hover {
+    color: #0066CC;
+  }
+  .gs-promotion.gs-result a.gs-title:active {
+    color: #0066CC;
+  }
+  .gs-promotion.gs-result .gs-snippet {
+    color: #454545;
+  }
+  .gs-promotion.gs-result .gs-visibleUrl,
+  .gs-promotion.gs-result .gs-visibleUrl-short {
+    color: #815FA7;
+  }
+  .gsib_a {
+    padding: 2px;
+  }
+</style>    
+</span>
+</div>
+
+		
+		
+		<nav id="site-navigation" class="themonic-nav" role="navigation">
+			<a class="assistive-text" href="#content" title="Skip to content">Skip to content</a>
+			<div class="menu-menu-1-container"><ul id="menu-top" class="nav-menu"><li id="menu-item-25174" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25174"><a href="http://geeksquiz.com/quiz-corner/">Quizzes</a>
+<ul class="sub-menu">
+	<li id="menu-item-25222" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25222"><a href="http://geeksquiz.com/quizzes-on-programming-languages/">Programming Languages</a>
+	<ul class="sub-menu">
+		<li id="menu-item-25175" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25175"><a href="http://geeksquiz.com/quiz-corner/#C%20Programming%20Mock%20Tests">C</a></li>
+		<li id="menu-item-25176" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25176"><a href="http://geeksquiz.com/quiz-corner/#C++%20Programming%20Mock%20Tests">C++</a></li>
+		<li id="menu-item-25177" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25177"><a href="http://geeksquiz.com/quiz-corner/#Java%20Programming%20Mock%20Tests">Java</a></li>
+		<li id="menu-item-25194" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25194"><a href="http://geeksquiz.com/quiz-corner/#Python%20Programming%20Mock%20Tests">Python</a></li>
+	</ul>
+</li>
+	<li id="menu-item-25226" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25226"><a href="http://geeksquiz.com/quizzes-on-computer-science/">Computer Science</a>
+	<ul class="sub-menu">
+		<li id="menu-item-25196" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25196"><a href="http://geeksquiz.com/quiz-corner/#Data%20Structures%20Mock%20Tests">Data Structures</a></li>
+		<li id="menu-item-25197" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25197"><a href="http://geeksquiz.com/quiz-corner/#Algorithms%20Mock%20Tests">Algorithms</a></li>
+		<li id="menu-item-25198" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25198"><a href="http://geeksquiz.com/quiz-corner/#Operating%20Systems%20Mock%20Tests">Operating Systems</a></li>
+		<li id="menu-item-25199" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25199"><a href="http://geeksquiz.com/quiz-corner/#DBMS%20Mock%20Tests">DBMS</a></li>
+		<li id="menu-item-25200" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25200"><a href="http://geeksquiz.com/quiz-corner/#Compiler%20Design%20Mock%20Tests">Compiler Design</a></li>
+		<li id="menu-item-25201" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25201"><a href="http://geeksquiz.com/quiz-corner/#Computer%20Networks%20Mock%20Tests">Computer Networks</a></li>
+		<li id="menu-item-25202" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25202"><a href="http://geeksquiz.com/quiz-corner/#Theory%20of%20Computation%20Mock%20Tests">Theory of Computation</a></li>
+		<li id="menu-item-25203" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25203"><a href="http://geeksquiz.com/quiz-corner/#Computer%20Organization%20and%20Architecture">Computer Organization and Architecture</a></li>
+		<li id="menu-item-25215" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25215"><a href="http://geeksquiz.com/software-engineering/">Software Engineering</a></li>
+		<li id="menu-item-25216" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25216"><a href="http://geeksquiz.com/html-and-xml/">HTML and XML</a></li>
+		<li id="menu-item-25204" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25204"><a href="http://geeksquiz.com/quiz-corner/#Engineering%20Mathematics">Engineering Mathematics</a></li>
+	</ul>
+</li>
+	<li id="menu-item-25195" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25195"><a href="http://geeksquiz.com/quiz-corner/#GATE%20Mock%20Tests">GATE</a></li>
+	<li id="menu-item-25205" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25205"><a href="http://geeksquiz.com/quiz-corner/#Aptitude%20Mock%20Tests">Aptitude</a></li>
+	<li id="menu-item-25207" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25207"><a href="http://geeksquiz.com/quiz-corner/#CS%20Interview%20Questions">CS Interview Questions</a></li>
+</ul>
+</li>
+<li id="menu-item-23444" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-23444"><a href="http://geeksquiz.com/category/articles/">Articles</a>
+<ul class="sub-menu">
+	<li id="menu-item-25236" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25236"><a href="http://geeksquiz.com/articles-on-programming-languages/">Programming Languages</a>
+	<ul class="sub-menu">
+		<li id="menu-item-23447" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23447"><a href="http://geeksquiz.com/category/articles/c-articles/">C</a></li>
+		<li id="menu-item-23448" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23448"><a href="http://geeksquiz.com/category/articles/c-articles-2/">C++</a></li>
+		<li id="menu-item-23462" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23462"><a href="http://geeksquiz.com/category/articles/java-articles/">Java</a></li>
+		<li id="menu-item-25231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-25231"><a href="http://geeksquiz.com/category/articles/python-articles/">Python</a></li>
+	</ul>
+</li>
+	<li id="menu-item-25235" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25235"><a href="http://geeksquiz.com/articles-on-computer-science-subjects/">Computer Science</a>
+	<ul class="sub-menu">
+		<li id="menu-item-23445" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-23445"><a href="http://geeksquiz.com/category/articles/algorithms-articles/">Algorithms</a></li>
+		<li id="menu-item-23449" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23449"><a href="http://geeksquiz.com/category/articles/compiler-design-articles/">Compiler Design</a></li>
+		<li id="menu-item-23450" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23450"><a href="http://geeksquiz.com/category/articles/computer-networks-articles/">Computer Networks</a></li>
+		<li id="menu-item-23451" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23451"><a href="http://geeksquiz.com/category/articles/computer-organization-and-architecture-articles/">Computer Organization and Architecture</a></li>
+		<li id="menu-item-23452" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-23452"><a href="http://geeksquiz.com/category/articles/data-structures/">Data Structures</a>
+		<ul class="sub-menu">
+			<li id="menu-item-23453" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23453"><a href="http://geeksquiz.com/category/articles/data-structures/hash/">Hash</a></li>
+			<li id="menu-item-23454" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23454"><a href="http://geeksquiz.com/category/articles/data-structures/linked-list/">Linked List</a></li>
+			<li id="menu-item-23455" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23455"><a href="http://geeksquiz.com/category/articles/data-structures/queue/">Queue</a></li>
+			<li id="menu-item-23456" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23456"><a href="http://geeksquiz.com/category/articles/data-structures/stack/">Stack</a></li>
+			<li id="menu-item-23457" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23457"><a href="http://geeksquiz.com/category/articles/data-structures/tree/">Tree</a></li>
+		</ul>
+</li>
+		<li id="menu-item-23458" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23458"><a href="http://geeksquiz.com/category/articles/dbms-articles/">DBMS</a></li>
+		<li id="menu-item-23459" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23459"><a href="http://geeksquiz.com/category/articles/difference/">Difference</a></li>
+		<li id="menu-item-23460" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23460"><a href="http://geeksquiz.com/category/articles/digital-electronic/">Digital Electronics</a></li>
+		<li id="menu-item-23463" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23463"><a href="http://geeksquiz.com/category/articles/mathematics/">Mathematics</a></li>
+		<li id="menu-item-23464" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23464"><a href="http://geeksquiz.com/category/articles/operating-systems-articles/">Operating Systems</a></li>
+		<li id="menu-item-23466" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23466"><a href="http://geeksquiz.com/category/articles/theory-of-computation/">Theory of Computation</a></li>
+	</ul>
+</li>
+	<li id="menu-item-25237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25237"><a href="http://geeksquiz.com/category/articles/placements/">Placements</a></li>
+	<li id="menu-item-23465" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23465"><a href="http://geeksquiz.com/category/articles/puzzle/">Puzzles</a></li>
+	<li id="menu-item-23461" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23461"><a href="http://geeksquiz.com/category/articles/interview-experiences/">Interview Experiences</a></li>
+</ul>
+</li>
+<li id="menu-item-25208" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-25208"><a href="http://geeksquiz.com/gate-corner-2/">GATE</a>
+<ul class="sub-menu">
+	<li id="menu-item-25209" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25209"><a href="http://geeksquiz.com/gate-cs-2017-syllabus/">GATE 2017 Syllabus (Expected)</a></li>
+	<li id="menu-item-25210" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25210"><a href="http://geeksquiz.com/gate-cs-notes/">GATE Notes</a></li>
+	<li id="menu-item-25211" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25211"><a href="http://geeksquiz.com/gate-cs-in-past/">GATE CS in Past</a></li>
+	<li id="menu-item-25212" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25212"><a href="http://geeksquiz.com/lmns/">Last Minute Notes</a></li>
+	<li id="menu-item-25213" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25213"><a href="http://geeksquiz.com/original-gate-previous-year-question-papers-cse-and-it/">Official Papers</a></li>
+	<li id="menu-item-25214" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25214"><a href="http://www.gatecs.geeksquiz.com/">GATE CS Forum</a></li>
+</ul>
+</li>
+<li id="menu-item-25248" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25248"><a href="http://geeksquiz.com/placements/">Placements</a></li>
+<li id="menu-item-25178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25178"><a href="http://geeksquiz.com/interview-corner/">Interview Corner</a></li>
+<li id="menu-item-25182" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25182"><a href="http://geeksquiz.com/category/articles/puzzle/">Puzzles</a></li>
+<li id="menu-item-23497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23497"><a href="http://geeksquiz.com/amazon-books/">Books</a></li>
+<li id="menu-item-25179" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25179"><a href="http://geeksquiz.com/contribute/">Contribute</a></li>
+<li id="menu-item-25180" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-25180"><a href="http://geeksquiz.com/latest-questions/">What’s New</a></li>
+<li id="menu-item-25381" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25381"><a href="http://www.geeksforgeeks.org/jobs/">Jobs</a></li>
+</ul><select class="selectnav" id="selectnav1"><option selected="selected" value="">Menu</option><option value="http://geeksquiz.com/quiz-corner/">QUIZZES</option><option value="http://geeksquiz.com/quizzes-on-programming-languages/">- Programming Languages</option><option value="http://geeksquiz.com/quiz-corner/#C%20Programming%20Mock%20Tests">-- C</option><option value="http://geeksquiz.com/quiz-corner/#C++%20Programming%20Mock%20Tests">-- C++</option><option value="http://geeksquiz.com/quiz-corner/#Java%20Programming%20Mock%20Tests">-- Java</option><option value="http://geeksquiz.com/quiz-corner/#Python%20Programming%20Mock%20Tests">-- Python</option><option value="http://geeksquiz.com/quizzes-on-computer-science/">- Computer Science</option><option value="http://geeksquiz.com/quiz-corner/#Data%20Structures%20Mock%20Tests">-- Data Structures</option><option value="http://geeksquiz.com/quiz-corner/#Algorithms%20Mock%20Tests">-- Algorithms</option><option value="http://geeksquiz.com/quiz-corner/#Operating%20Systems%20Mock%20Tests">-- Operating Systems</option><option value="http://geeksquiz.com/quiz-corner/#DBMS%20Mock%20Tests">-- DBMS</option><option value="http://geeksquiz.com/quiz-corner/#Compiler%20Design%20Mock%20Tests">-- Compiler Design</option><option value="http://geeksquiz.com/quiz-corner/#Computer%20Networks%20Mock%20Tests">-- Computer Networks</option><option value="http://geeksquiz.com/quiz-corner/#Theory%20of%20Computation%20Mock%20Tests">-- Theory of Computation</option><option value="http://geeksquiz.com/quiz-corner/#Computer%20Organization%20and%20Architecture">-- Computer Organization and Architecture</option><option value="http://geeksquiz.com/software-engineering/">-- Software Engineering</option><option value="http://geeksquiz.com/html-and-xml/">-- HTML and XML</option><option value="http://geeksquiz.com/quiz-corner/#Engineering%20Mathematics">-- Engineering Mathematics</option><option value="http://geeksquiz.com/quiz-corner/#GATE%20Mock%20Tests">- GATE</option><option value="http://geeksquiz.com/quiz-corner/#Aptitude%20Mock%20Tests">- Aptitude</option><option value="http://geeksquiz.com/quiz-corner/#CS%20Interview%20Questions">- CS Interview Questions</option><option value="http://geeksquiz.com/category/articles/">ARTICLES</option><option value="http://geeksquiz.com/articles-on-programming-languages/">- Programming Languages</option><option value="http://geeksquiz.com/category/articles/c-articles/">-- C</option><option value="http://geeksquiz.com/category/articles/c-articles-2/">-- C++</option><option value="http://geeksquiz.com/category/articles/java-articles/">-- Java</option><option value="http://geeksquiz.com/category/articles/python-articles/">-- Python</option><option value="http://geeksquiz.com/articles-on-computer-science-subjects/">- Computer Science</option><option value="http://geeksquiz.com/category/articles/algorithms-articles/">-- Algorithms</option><option value="http://geeksquiz.com/category/articles/compiler-design-articles/">-- Compiler Design</option><option value="http://geeksquiz.com/category/articles/computer-networks-articles/">-- Computer Networks</option><option value="http://geeksquiz.com/category/articles/computer-organization-and-architecture-articles/">-- Computer Organization and Architecture</option><option value="http://geeksquiz.com/category/articles/data-structures/">-- Data Structures</option><option value="http://geeksquiz.com/category/articles/data-structures/hash/">--- Hash</option><option value="http://geeksquiz.com/category/articles/data-structures/linked-list/">--- Linked List</option><option value="http://geeksquiz.com/category/articles/data-structures/queue/">--- Queue</option><option value="http://geeksquiz.com/category/articles/data-structures/stack/">--- Stack</option><option value="http://geeksquiz.com/category/articles/data-structures/tree/">--- Tree</option><option value="http://geeksquiz.com/category/articles/dbms-articles/">-- DBMS</option><option value="http://geeksquiz.com/category/articles/difference/">-- Difference</option><option value="http://geeksquiz.com/category/articles/digital-electronic/">-- Digital Electronics</option><option value="http://geeksquiz.com/category/articles/mathematics/">-- Mathematics</option><option value="http://geeksquiz.com/category/articles/operating-systems-articles/">-- Operating Systems</option><option value="http://geeksquiz.com/category/articles/theory-of-computation/">-- Theory of Computation</option><option value="http://geeksquiz.com/category/articles/placements/">- Placements</option><option value="http://geeksquiz.com/category/articles/puzzle/">- Puzzles</option><option value="http://geeksquiz.com/category/articles/interview-experiences/">- Interview Experiences</option><option value="http://geeksquiz.com/gate-corner-2/">GATE</option><option value="http://geeksquiz.com/gate-cs-2017-syllabus/">- GATE 2017 Syllabus (Expected)</option><option value="http://geeksquiz.com/gate-cs-notes/">- GATE Notes</option><option value="http://geeksquiz.com/gate-cs-in-past/">- GATE CS in Past</option><option value="http://geeksquiz.com/lmns/">- Last Minute Notes</option><option value="http://geeksquiz.com/original-gate-previous-year-question-papers-cse-and-it/">- Official Papers</option><option value="http://www.gatecs.geeksquiz.com/">- GATE CS Forum</option><option value="http://geeksquiz.com/placements/">PLACEMENTS</option><option value="http://geeksquiz.com/interview-corner/">INTERVIEW CORNER</option><option value="http://geeksquiz.com/category/articles/puzzle/">PUZZLES</option><option value="http://geeksquiz.com/amazon-books/">BOOKS</option><option value="http://geeksquiz.com/contribute/">CONTRIBUTE</option><option value="http://geeksquiz.com/latest-questions/">WHAT’S NEW</option><option value="http://www.geeksforgeeks.org/jobs/">JOBS</option></select></div>		</nav><!-- #site-navigation -->
+		<div class="clear"></div>
+	</header><!-- #masthead -->
+
+	<div id="main" class="wrapper">	<div id="primary" class="site-content">
+		<div id="content" role="main">
+
+							
+	<article id="post-2783" class="post-2783 post type-post status-publish format-standard hentry category-sorting">
+				<header class="entry-header">
+						<h1 class="entry-title">Merge Sort</h1>
+				
+			</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>MergeSort is a <a href="http://www.geeksforgeeks.org/divide-and-conquer-set-1-find-closest-pair-of-points/" target="_blank">Divide and Conquer</a> algorithm.  It divides input array in two halves, calls itself for the two halves and then merges the two sorted halves. <span id="more-2783"></span> <strong>The merg() function</strong>
+ is used for merging two halves.  The merge(arr, l, m, r) is key process
+ that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the 
+two sorted sub-arrays into one. See following C implementation for 
+details.</p>
+<pre><strong>MergeSort(arr[], l,  r)</strong>
+If r &gt; l
+     <strong>1. </strong>Find the middle point to divide the array into two halves:  
+             middle m = (l+r)/2
+    <strong> 2. </strong>Call mergeSort for first half:   
+             Call mergeSort(arr, l, m)
+     <strong>3.</strong> Call mergeSort for second half:
+             Call mergeSort(arr, m+1, r)
+     <strong>4. </strong>Merge the two halves sorted in step 2 and 3:
+             Call merge(arr, l, m, r)</pre>
+<p>The following diagram from <a href="http://en.wikipedia.org/wiki/File:Merge_sort_algorithm_diagram.svg" target="_blank">wikipedia</a>
+ shows the complete merge sort process for an example array {38, 27, 43,
+ 3, 9, 82, 10}. If we take a closer look at the diagram, we can see that
+ the array is recursively divided in two halves till the size becomes 1.
+ Once the size becomes 1, the merge processes comes into action and 
+starts merging arrays back till the complete array is merged.</p>
+<p><a href="http://d3guuwhmbtzoxp.cloudfront.net/wp-content/uploads/2013/03/Merge-Sort.png"><img src="Merge%20Sort%20-%20GeeksQuiz_files/Merge-Sort.png" alt="Merge-Sort" class="alignnone size-full wp-image-2827" height="432" width="440"></a></p>
+<div class="responsive-tabs-wrapper"><div class="responsive-tabs responsive-tabs--enabled"><ul role="tablist" class="responsive-tabs__list"><li tabindex="0" role="tab" aria-controls="tablist1-panel1" id="tablist1-tab1" class="responsive-tabs__list__item responsive-tabs__list__item--active">C/C++</li><li tabindex="0" role="tab" aria-controls="tablist1-panel2" id="tablist1-tab2" class="responsive-tabs__list__item">Java</li><li tabindex="0" role="tab" aria-controls="tablist1-panel3" id="tablist1-tab3" class="responsive-tabs__list__item">Python</li></ul>
+<h2 tabindex="0" class="tabtitle responsive-tabs__heading responsive-tabs__heading--active">C/C++</h2>
+<div id="tablist1-panel1" aria-labelledby="tablist1-tab1" role="tabpanel" aria-hidden="false" class="tabcontent responsive-tabs__panel responsive-tabs__panel--active">
+
+<div><div id="highlighter_718968" class="syntaxhighlighter nogutter  cpp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp comments">/* C program for Merge Sort */</code></div><div class="line number2 index1 alt1"><code class="cpp preprocessor">#include&lt;stdlib.h&gt;</code></div><div class="line number3 index2 alt2"><code class="cpp preprocessor">#include&lt;stdio.h&gt;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2 highlighted"><code class="cpp comments">// Merges two subarrays of arr[].</code></div><div class="line number6 index5 alt1 highlighted"><code class="cpp comments">// First subarray is arr[l..m]</code></div><div class="line number7 index6 alt2 highlighted"><code class="cpp comments">// Second subarray is arr[m+1..r]</code></div><div class="line number8 index7 alt1 highlighted"><code class="cpp keyword bold">void</code> <code class="cpp plain">merge(</code><code class="cpp color1 bold">int</code> <code class="cpp plain">arr[], </code><code class="cpp color1 bold">int</code> <code class="cpp plain">l, </code><code class="cpp color1 bold">int</code> <code class="cpp plain">m, </code><code class="cpp color1 bold">int</code> <code class="cpp plain">r)</code></div><div class="line number9 index8 alt2 highlighted"><code class="cpp plain">{</code></div><div class="line number10 index9 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">i, j, k;</code></div><div class="line number11 index10 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">n1 = m - l + 1;</code></div><div class="line number12 index11 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">n2 =&nbsp; r - m;</code></div><div class="line number13 index12 alt2 highlighted">&nbsp;</div><div class="line number14 index13 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">/* create temp arrays */</code></div><div class="line number15 index14 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">L[n1], R[n2];</code></div><div class="line number16 index15 alt1 highlighted">&nbsp;</div><div class="line number17 index16 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">/* Copy data to temp arrays L[] and R[] */</code></div><div class="line number18 index17 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">for</code> <code class="cpp plain">(i = 0; i &lt; n1; i++)</code></div><div class="line number19 index18 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">L[i] = arr[l + i];</code></div><div class="line number20 index19 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">for</code> <code class="cpp plain">(j = 0; j &lt; n2; j++)</code></div><div class="line number21 index20 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">R[j] = arr[m + 1+ j];</code></div><div class="line number22 index21 alt1 highlighted">&nbsp;</div><div class="line number23 index22 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">/* Merge the temp arrays back into arr[l..r]*/</code></div><div class="line number24 index23 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">i = 0; </code><code class="cpp comments">// Initial index of first subarray</code></div><div class="line number25 index24 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">j = 0; </code><code class="cpp comments">// Initial index of second subarray</code></div><div class="line number26 index25 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">k = l; </code><code class="cpp comments">// Initial index of merged subarray</code></div><div class="line number27 index26 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">while</code> <code class="cpp plain">(i &lt; n1 &amp;&amp; j &lt; n2)</code></div><div class="line number28 index27 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">{</code></div><div class="line number29 index28 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">if</code> <code class="cpp plain">(L[i] &lt;= R[j])</code></div><div class="line number30 index29 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">{</code></div><div class="line number31 index30 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">arr[k] = L[i];</code></div><div class="line number32 index31 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">i++;</code></div><div class="line number33 index32 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number34 index33 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">else</code></div><div class="line number35 index34 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">{</code></div><div class="line number36 index35 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">arr[k] = R[j];</code></div><div class="line number37 index36 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">j++;</code></div><div class="line number38 index37 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number39 index38 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">k++;</code></div><div class="line number40 index39 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number41 index40 alt2 highlighted">&nbsp;</div><div class="line number42 index41 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">/* Copy the remaining elements of L[], if there</code></div><div class="line number43 index42 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">are any */</code></div><div class="line number44 index43 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">while</code> <code class="cpp plain">(i &lt; n1)</code></div><div class="line number45 index44 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">{</code></div><div class="line number46 index45 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">arr[k] = L[i];</code></div><div class="line number47 index46 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">i++;</code></div><div class="line number48 index47 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">k++;</code></div><div class="line number49 index48 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number50 index49 alt1 highlighted">&nbsp;</div><div class="line number51 index50 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">/* Copy the remaining elements of R[], if there</code></div><div class="line number52 index51 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">are any */</code></div><div class="line number53 index52 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">while</code> <code class="cpp plain">(j &lt; n2)</code></div><div class="line number54 index53 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">{</code></div><div class="line number55 index54 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">arr[k] = R[j];</code></div><div class="line number56 index55 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">j++;</code></div><div class="line number57 index56 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">k++;</code></div><div class="line number58 index57 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number59 index58 alt2 highlighted"><code class="cpp plain">}</code></div><div class="line number60 index59 alt1 highlighted">&nbsp;</div><div class="line number61 index60 alt2 highlighted"><code class="cpp comments">/* l is for left index and r is right index of the</code></div><div class="line number62 index61 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">sub-array of arr to be sorted */</code></div><div class="line number63 index62 alt2 highlighted"><code class="cpp keyword bold">void</code> <code class="cpp plain">mergeSort(</code><code class="cpp color1 bold">int</code> <code class="cpp plain">arr[], </code><code class="cpp color1 bold">int</code> <code class="cpp plain">l, </code><code class="cpp color1 bold">int</code> <code class="cpp plain">r)</code></div><div class="line number64 index63 alt1 highlighted"><code class="cpp plain">{</code></div><div class="line number65 index64 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">if</code> <code class="cpp plain">(l &lt; r)</code></div><div class="line number66 index65 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">{</code></div><div class="line number67 index66 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">// Same as (l+r)/2, but avoids overflow for</code></div><div class="line number68 index67 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">// large l and h</code></div><div class="line number69 index68 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">m = l+(r-l)/2;</code></div><div class="line number70 index69 alt1 highlighted">&nbsp;</div><div class="line number71 index70 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">// Sort first and second halves</code></div><div class="line number72 index71 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">mergeSort(arr, l, m);</code></div><div class="line number73 index72 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">mergeSort(arr, m+1, r);</code></div><div class="line number74 index73 alt1 highlighted">&nbsp;</div><div class="line number75 index74 alt2 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">merge(arr, l, m, r);</code></div><div class="line number76 index75 alt1 highlighted"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number77 index76 alt2 highlighted"><code class="cpp plain">}</code></div><div class="line number78 index77 alt1">&nbsp;</div><div class="line number79 index78 alt2"><code class="cpp comments">/* UTILITY FUNCTIONS */</code></div><div class="line number80 index79 alt1"><code class="cpp comments">/* Function to print an array */</code></div><div class="line number81 index80 alt2"><code class="cpp keyword bold">void</code> <code class="cpp plain">printArray(</code><code class="cpp color1 bold">int</code> <code class="cpp plain">A[], </code><code class="cpp color1 bold">int</code> <code class="cpp plain">size)</code></div><div class="line number82 index81 alt1"><code class="cpp plain">{</code></div><div class="line number83 index82 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">i;</code></div><div class="line number84 index83 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">for</code> <code class="cpp plain">(i=0; i &lt; size; i++)</code></div><div class="line number85 index84 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp functions bold">printf</code><code class="cpp plain">(</code><code class="cpp string">"%d "</code><code class="cpp plain">, A[i]);</code></div><div class="line number86 index85 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp functions bold">printf</code><code class="cpp plain">(</code><code class="cpp string">"\n"</code><code class="cpp plain">);</code></div><div class="line number87 index86 alt2"><code class="cpp plain">}</code></div><div class="line number88 index87 alt1">&nbsp;</div><div class="line number89 index88 alt2"><code class="cpp comments">/* Driver program to test above functions */</code></div><div class="line number90 index89 alt1"><code class="cpp color1 bold">int</code> <code class="cpp plain">main()</code></div><div class="line number91 index90 alt2"><code class="cpp plain">{</code></div><div class="line number92 index91 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">arr[] = {12, 11, 13, 5, 6, 7};</code></div><div class="line number93 index92 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp color1 bold">int</code> <code class="cpp plain">arr_size = </code><code class="cpp keyword bold">sizeof</code><code class="cpp plain">(arr)/</code><code class="cpp keyword bold">sizeof</code><code class="cpp plain">(arr[0]);</code></div><div class="line number94 index93 alt1">&nbsp;</div><div class="line number95 index94 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp functions bold">printf</code><code class="cpp plain">(</code><code class="cpp string">"Given array is \n"</code><code class="cpp plain">);</code></div><div class="line number96 index95 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">printArray(arr, arr_size);</code></div><div class="line number97 index96 alt2">&nbsp;</div><div class="line number98 index97 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">mergeSort(arr, 0, arr_size - 1);</code></div><div class="line number99 index98 alt2">&nbsp;</div><div class="line number100 index99 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp functions bold">printf</code><code class="cpp plain">(</code><code class="cpp string">"\nSorted array is \n"</code><code class="cpp plain">);</code></div><div class="line number101 index100 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">printArray(arr, arr_size);</code></div><div class="line number102 index101 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">return</code> <code class="cpp plain">0;</code></div><div class="line number103 index102 alt2"><code class="cpp plain">}</code></div></div></td></tr></tbody></table><button style="background-color: #39B54A; color:#FFF; box-shadow: 0px 0px 5px 0px #AAA; float:right;" onclick="redirect( 'highlighter_718968', 'cpp' )">Run on IDE</button></div></div>
+
+</div><h2 tabindex="0" class="tabtitle responsive-tabs__heading">Java</h2>
+<div id="tablist1-panel2" aria-labelledby="tablist1-tab2" role="tabpanel" aria-hidden="true" style="display: none;" class="tabcontent responsive-tabs__panel">
+
+<div><div id="highlighter_482944" class="syntaxhighlighter nogutter  java"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java comments">/* Java program for Merge Sort */</code></div><div class="line number2 index1 alt1"><code class="java keyword">class</code> <code class="java plain">MergeSort</code></div><div class="line number3 index2 alt2"><code class="java plain">{</code></div><div class="line number4 index3 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Merges two subarrays of arr[].</code></div><div class="line number5 index4 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// First subarray is arr[l..m]</code></div><div class="line number6 index5 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Second subarray is arr[m+1..r]</code></div><div class="line number7 index6 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">void</code> <code class="java plain">merge(</code><code class="java keyword">int</code> <code class="java plain">arr[], </code><code class="java keyword">int</code> <code class="java plain">l, </code><code class="java keyword">int</code> <code class="java plain">m, </code><code class="java keyword">int</code> <code class="java plain">r)</code></div><div class="line number8 index7 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number9 index8 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Find sizes of two subarrays to be merged</code></div><div class="line number10 index9 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">n1 = m - l + </code><code class="java value">1</code><code class="java plain">;</code></div><div class="line number11 index10 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">n2 = r - m;</code></div><div class="line number12 index11 alt1 highlighted">&nbsp;</div><div class="line number13 index12 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* Create temp arrays */</code></div><div class="line number14 index13 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">L[] = </code><code class="java keyword">new</code> <code class="java keyword">int</code> <code class="java plain">[n1];</code></div><div class="line number15 index14 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">R[] = </code><code class="java keyword">new</code> <code class="java keyword">int</code> <code class="java plain">[n2];</code></div><div class="line number16 index15 alt1 highlighted">&nbsp;</div><div class="line number17 index16 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/*Copy data to temp arrays*/</code></div><div class="line number18 index17 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">for</code> <code class="java plain">(</code><code class="java keyword">int</code> <code class="java plain">i=</code><code class="java value">0</code><code class="java plain">; i&lt;n1; ++i)</code></div><div class="line number19 index18 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">L[i] = arr[l + i];</code></div><div class="line number20 index19 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">for</code> <code class="java plain">(</code><code class="java keyword">int</code> <code class="java plain">j=</code><code class="java value">0</code><code class="java plain">; j&lt;n2; ++j)</code></div><div class="line number21 index20 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">R[j] = arr[m + </code><code class="java value">1</code><code class="java plain">+ j];</code></div><div class="line number22 index21 alt1 highlighted">&nbsp;</div><div class="line number23 index22 alt2 highlighted">&nbsp;</div><div class="line number24 index23 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* Merge the temp arrays */</code></div><div class="line number25 index24 alt2 highlighted">&nbsp;</div><div class="line number26 index25 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Initial indexes of first and second subarrays</code></div><div class="line number27 index26 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">i = </code><code class="java value">0</code><code class="java plain">, j = </code><code class="java value">0</code><code class="java plain">;</code></div><div class="line number28 index27 alt1 highlighted">&nbsp;</div><div class="line number29 index28 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Initial index of merged subarry array</code></div><div class="line number30 index29 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">k = l;</code></div><div class="line number31 index30 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">while</code> <code class="java plain">(i &lt; n1 &amp;&amp; j &lt; n2)</code></div><div class="line number32 index31 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number33 index32 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">if</code> <code class="java plain">(L[i] &lt;= R[j])</code></div><div class="line number34 index33 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number35 index34 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">arr[k] = L[i];</code></div><div class="line number36 index35 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">i++;</code></div><div class="line number37 index36 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number38 index37 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">else</code></div><div class="line number39 index38 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number40 index39 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">arr[k] = R[j];</code></div><div class="line number41 index40 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">j++;</code></div><div class="line number42 index41 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number43 index42 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">k++;</code></div><div class="line number44 index43 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number45 index44 alt2 highlighted">&nbsp;</div><div class="line number46 index45 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* Copy remaining elements of L[] if any */</code></div><div class="line number47 index46 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">while</code> <code class="java plain">(i &lt; n1)</code></div><div class="line number48 index47 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number49 index48 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">arr[k] = L[i];</code></div><div class="line number50 index49 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">i++;</code></div><div class="line number51 index50 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">k++;</code></div><div class="line number52 index51 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number53 index52 alt2 highlighted">&nbsp;</div><div class="line number54 index53 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* Copy remaining elements of L[] if any */</code></div><div class="line number55 index54 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">while</code> <code class="java plain">(j &lt; n2)</code></div><div class="line number56 index55 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number57 index56 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">arr[k] = R[j];</code></div><div class="line number58 index57 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">j++;</code></div><div class="line number59 index58 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">k++;</code></div><div class="line number60 index59 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number61 index60 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number62 index61 alt1 highlighted">&nbsp;</div><div class="line number63 index62 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Main function that sorts arr[l..r] using</code></div><div class="line number64 index63 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// merge()</code></div><div class="line number65 index64 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">void</code> <code class="java plain">sort(</code><code class="java keyword">int</code> <code class="java plain">arr[], </code><code class="java keyword">int</code> <code class="java plain">l, </code><code class="java keyword">int</code> <code class="java plain">r)</code></div><div class="line number66 index65 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number67 index66 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">if</code> <code class="java plain">(l &lt; r)</code></div><div class="line number68 index67 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number69 index68 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Find the middle point</code></div><div class="line number70 index69 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">m = (l+r)/</code><code class="java value">2</code><code class="java plain">;</code></div><div class="line number71 index70 alt2 highlighted">&nbsp;</div><div class="line number72 index71 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Sort first and second halves</code></div><div class="line number73 index72 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">sort(arr, l, m);</code></div><div class="line number74 index73 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">sort(arr , m+</code><code class="java value">1</code><code class="java plain">, r);</code></div><div class="line number75 index74 alt2 highlighted">&nbsp;</div><div class="line number76 index75 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Merge the sorted halves</code></div><div class="line number77 index76 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">merge(arr, l, m, r);</code></div><div class="line number78 index77 alt1 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number79 index78 alt2 highlighted"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number80 index79 alt1">&nbsp;</div><div class="line number81 index80 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">/* A utility function to print array of size n */</code></div><div class="line number82 index81 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">printArray(</code><code class="java keyword">int</code> <code class="java plain">arr[])</code></div><div class="line number83 index82 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number84 index83 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">n = arr.length;</code></div><div class="line number85 index84 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">for</code> <code class="java plain">(</code><code class="java keyword">int</code> <code class="java plain">i=</code><code class="java value">0</code><code class="java plain">; i&lt;n; ++i)</code></div><div class="line number86 index85 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.print(arr[i] + </code><code class="java string">" "</code><code class="java plain">);</code></div><div class="line number87 index86 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println();</code></div><div class="line number88 index87 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number89 index88 alt2">&nbsp;</div><div class="line number90 index89 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">// Driver method</code></div><div class="line number91 index90 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java keyword">void</code> <code class="java plain">main(String args[])</code></div><div class="line number92 index91 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{</code></div><div class="line number93 index92 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">int</code> <code class="java plain">arr[] = {</code><code class="java value">12</code><code class="java plain">, </code><code class="java value">11</code><code class="java plain">, </code><code class="java value">13</code><code class="java plain">, </code><code class="java value">5</code><code class="java plain">, </code><code class="java value">6</code><code class="java plain">, </code><code class="java value">7</code><code class="java plain">};</code></div><div class="line number94 index93 alt1">&nbsp;</div><div class="line number95 index94 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"Given Array"</code><code class="java plain">);</code></div><div class="line number96 index95 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">printArray(arr);</code></div><div class="line number97 index96 alt2">&nbsp;</div><div class="line number98 index97 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">MergeSort ob = </code><code class="java keyword">new</code> <code class="java plain">MergeSort();</code></div><div class="line number99 index98 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">ob.sort(arr, </code><code class="java value">0</code><code class="java plain">, arr.length-</code><code class="java value">1</code><code class="java plain">);</code></div><div class="line number100 index99 alt1">&nbsp;</div><div class="line number101 index100 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">System.out.println(</code><code class="java string">"\nSorted array"</code><code class="java plain">);</code></div><div class="line number102 index101 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">printArray(arr);</code></div><div class="line number103 index102 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number104 index103 alt1"><code class="java plain">}</code></div><div class="line number105 index104 alt2"><code class="java comments">/* This code is contributed by Rajat Mishra */</code></div></div></td></tr></tbody></table><button style="background-color: #39B54A; color:#FFF; box-shadow: 0px 0px 5px 0px #AAA; float:right;" onclick="redirect( 'highlighter_482944', 'java' )">Run on IDE</button></div></div>
+
+</div><h2 tabindex="0" class="tabtitle responsive-tabs__heading">Python</h2>
+<div id="tablist1-panel3" aria-labelledby="tablist1-tab3" role="tabpanel" aria-hidden="true" style="display: none;" class="tabcontent responsive-tabs__panel">
+
+<div><div id="highlighter_796976" class="syntaxhighlighter nogutter  python"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="python comments"># Python program for implementation of MergeSort</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2 highlighted"><code class="python comments"># Merges two subarrays of arr[].</code></div><div class="line number4 index3 alt1 highlighted"><code class="python comments"># First subarray is arr[l..m]</code></div><div class="line number5 index4 alt2 highlighted"><code class="python comments"># Second subarray is arr[m+1..r]</code></div><div class="line number6 index5 alt1 highlighted"><code class="python keyword">def</code> <code class="python plain">merge(arr, l, m, r):</code></div><div class="line number7 index6 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">n1 </code><code class="python keyword">=</code> <code class="python plain">m </code><code class="python keyword">-</code> <code class="python plain">l </code><code class="python keyword">+</code> <code class="python value">1</code></div><div class="line number8 index7 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">n2 </code><code class="python keyword">=</code> <code class="python plain">r</code><code class="python keyword">-</code> <code class="python plain">m</code></div><div class="line number9 index8 alt2 highlighted">&nbsp;</div><div class="line number10 index9 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># create temp arrays</code></div><div class="line number11 index10 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">L </code><code class="python keyword">=</code> <code class="python plain">[</code><code class="python value">0</code><code class="python plain">] </code><code class="python keyword">*</code> <code class="python plain">(n1)</code></div><div class="line number12 index11 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">R </code><code class="python keyword">=</code> <code class="python plain">[</code><code class="python value">0</code><code class="python plain">] </code><code class="python keyword">*</code> <code class="python plain">(n2)</code></div><div class="line number13 index12 alt2 highlighted">&nbsp;</div><div class="line number14 index13 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># Copy data to temp arrays L[] and R[]</code></div><div class="line number15 index14 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">for</code> <code class="python plain">i </code><code class="python keyword">in</code> <code class="python functions">range</code><code class="python plain">(</code><code class="python value">0</code> <code class="python plain">, n1):</code></div><div class="line number16 index15 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">L[i] </code><code class="python keyword">=</code> <code class="python plain">arr[l </code><code class="python keyword">+</code> <code class="python plain">i]</code></div><div class="line number17 index16 alt2 highlighted">&nbsp;</div><div class="line number18 index17 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">for</code> <code class="python plain">j </code><code class="python keyword">in</code> <code class="python functions">range</code><code class="python plain">(</code><code class="python value">0</code> <code class="python plain">, n2):</code></div><div class="line number19 index18 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">R[j] </code><code class="python keyword">=</code> <code class="python plain">arr[m </code><code class="python keyword">+</code> <code class="python value">1</code> <code class="python keyword">+</code> <code class="python plain">j]</code></div><div class="line number20 index19 alt1 highlighted">&nbsp;</div><div class="line number21 index20 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># Merge the temp arrays back into arr[l..r]</code></div><div class="line number22 index21 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">i </code><code class="python keyword">=</code> <code class="python value">0</code>&nbsp;&nbsp;&nbsp;&nbsp; <code class="python comments"># Initial index of first subarray</code></div><div class="line number23 index22 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">j </code><code class="python keyword">=</code> <code class="python value">0</code>&nbsp;&nbsp;&nbsp;&nbsp; <code class="python comments"># Initial index of second subarray</code></div><div class="line number24 index23 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">k </code><code class="python keyword">=</code> <code class="python plain">l&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="python comments"># Initial index of merged subarray</code></div><div class="line number25 index24 alt2 highlighted">&nbsp;</div><div class="line number26 index25 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">while</code> <code class="python plain">i &lt; n1 </code><code class="python keyword">and</code> <code class="python plain">j &lt; n2 :</code></div><div class="line number27 index26 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">if</code> <code class="python plain">L[i] &lt;</code><code class="python keyword">=</code> <code class="python plain">R[j]:</code></div><div class="line number28 index27 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">arr[k] </code><code class="python keyword">=</code> <code class="python plain">L[i]</code></div><div class="line number29 index28 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">i </code><code class="python keyword">+</code><code class="python keyword">=</code> <code class="python value">1</code></div><div class="line number30 index29 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">else</code><code class="python plain">:</code></div><div class="line number31 index30 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">arr[k] </code><code class="python keyword">=</code> <code class="python plain">R[j]</code></div><div class="line number32 index31 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">j </code><code class="python keyword">+</code><code class="python keyword">=</code> <code class="python value">1</code></div><div class="line number33 index32 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">k </code><code class="python keyword">+</code><code class="python keyword">=</code> <code class="python value">1</code></div><div class="line number34 index33 alt1 highlighted">&nbsp;</div><div class="line number35 index34 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># Copy the remaining elements of L[], if there</code></div><div class="line number36 index35 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># are any</code></div><div class="line number37 index36 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">while</code> <code class="python plain">i &lt; n1:</code></div><div class="line number38 index37 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">arr[k] </code><code class="python keyword">=</code> <code class="python plain">L[i]</code></div><div class="line number39 index38 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">i </code><code class="python keyword">+</code><code class="python keyword">=</code> <code class="python value">1</code></div><div class="line number40 index39 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">k </code><code class="python keyword">+</code><code class="python keyword">=</code> <code class="python value">1</code></div><div class="line number41 index40 alt2 highlighted">&nbsp;</div><div class="line number42 index41 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># Copy the remaining elements of R[], if there</code></div><div class="line number43 index42 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># are any</code></div><div class="line number44 index43 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">while</code> <code class="python plain">j &lt; n2:</code></div><div class="line number45 index44 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">arr[k] </code><code class="python keyword">=</code> <code class="python plain">R[j]</code></div><div class="line number46 index45 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">j </code><code class="python keyword">+</code><code class="python keyword">=</code> <code class="python value">1</code></div><div class="line number47 index46 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">k </code><code class="python keyword">+</code><code class="python keyword">=</code> <code class="python value">1</code></div><div class="line number48 index47 alt1 highlighted">&nbsp;</div><div class="line number49 index48 alt2 highlighted"><code class="python comments"># l is for left index and r is right index of the</code></div><div class="line number50 index49 alt1 highlighted"><code class="python comments"># sub-array of arr to be sorted</code></div><div class="line number51 index50 alt2 highlighted"><code class="python keyword">def</code> <code class="python plain">mergeSort(arr,l,r):</code></div><div class="line number52 index51 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python keyword">if</code> <code class="python plain">l &lt; r:</code></div><div class="line number53 index52 alt2 highlighted">&nbsp;</div><div class="line number54 index53 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># Same as (l+r)/2, but avoids overflow for</code></div><div class="line number55 index54 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># large l and h</code></div><div class="line number56 index55 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">m </code><code class="python keyword">=</code> <code class="python plain">(l</code><code class="python keyword">+</code><code class="python plain">(r</code><code class="python keyword">-</code><code class="python value">1</code><code class="python plain">))</code><code class="python keyword">/</code><code class="python value">2</code></div><div class="line number57 index56 alt2 highlighted">&nbsp;</div><div class="line number58 index57 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python comments"># Sort first and second halves</code></div><div class="line number59 index58 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">mergeSort(arr, l, m)</code></div><div class="line number60 index59 alt1 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">mergeSort(arr, m</code><code class="python keyword">+</code><code class="python value">1</code><code class="python plain">, r)</code></div><div class="line number61 index60 alt2 highlighted"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">merge(arr, l, m, r)</code></div><div class="line number62 index61 alt1">&nbsp;</div><div class="line number63 index62 alt2">&nbsp;</div><div class="line number64 index63 alt1"><code class="python comments"># Driver code to test above</code></div><div class="line number65 index64 alt2"><code class="python plain">arr </code><code class="python keyword">=</code> <code class="python plain">[</code><code class="python value">12</code><code class="python plain">, </code><code class="python value">11</code><code class="python plain">, </code><code class="python value">13</code><code class="python plain">, </code><code class="python value">5</code><code class="python plain">, </code><code class="python value">6</code><code class="python plain">, </code><code class="python value">7</code><code class="python plain">]</code></div><div class="line number66 index65 alt1"><code class="python plain">n </code><code class="python keyword">=</code> <code class="python functions">len</code><code class="python plain">(arr)</code></div><div class="line number67 index66 alt2"><code class="python functions">print</code> <code class="python plain">(</code><code class="python string">"Given array is"</code><code class="python plain">)</code></div><div class="line number68 index67 alt1"><code class="python keyword">for</code> <code class="python plain">i </code><code class="python keyword">in</code> <code class="python functions">range</code><code class="python plain">(n):</code></div><div class="line number69 index68 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python plain">(</code><code class="python string">"%d"</code> <code class="python keyword">%</code><code class="python plain">arr[i]),</code></div><div class="line number70 index69 alt1">&nbsp;</div><div class="line number71 index70 alt2"><code class="python plain">mergeSort(arr,</code><code class="python value">0</code><code class="python plain">,n</code><code class="python keyword">-</code><code class="python value">1</code><code class="python plain">)</code></div><div class="line number72 index71 alt1"><code class="python functions">print</code> <code class="python plain">(</code><code class="python string">"\n\nSorted array is"</code><code class="python plain">)</code></div><div class="line number73 index72 alt2"><code class="python keyword">for</code> <code class="python plain">i </code><code class="python keyword">in</code> <code class="python functions">range</code><code class="python plain">(n):</code></div><div class="line number74 index73 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python functions">print</code> <code class="python plain">(</code><code class="python string">"%d"</code> <code class="python keyword">%</code><code class="python plain">arr[i]),</code></div><div class="line number75 index74 alt2">&nbsp;</div><div class="line number76 index75 alt1"><code class="python comments"># This code is contributed by Mohit Kumra</code></div></div></td></tr></tbody></table><button style="background-color: #39B54A; color:#FFF; box-shadow: 0px 0px 5px 0px #AAA; float:right;" onclick="redirect( 'highlighter_796976', 'python' )">Run on IDE</button></div></div>
+<p></p></div></div></div><br>
+Output:
+<pre>Given array is
+12 11 13 5 6 7
+
+Sorted array is
+5 6 7 11 12 13</pre>
+<p><strong>Time Complexity:</strong> Sorting arrays on different 
+machines. Merge Sort is a recursive algorithm and time complexity can be
+ expressed as following recurrence relation.<br>
+T(n) = 2T(n/2) + <img src="Merge%20Sort%20-%20GeeksQuiz_files/quicklatex.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\Theta(n)" title="Rendered by QuickLaTeX.com" style="vertical-align: -4px;" height="18" width="38"><br>
+The above recurrence can be solved either using Recurrence Tree method 
+or Master method.     It falls in case II of Master Method and solution 
+of the recurrence is <img src="Merge%20Sort%20-%20GeeksQuiz_files/quicklatex_002.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\Theta(nLogn)" title="Rendered by QuickLaTeX.com" style="vertical-align: -4px;" height="18" width="78">.<br>
+Time complexity of Merge Sort is <img src="Merge%20Sort%20-%20GeeksQuiz_files/quicklatex_002.svg" class="ql-img-inline-formula quicklatex-auto-format" alt="\Theta(nLogn)" title="Rendered by QuickLaTeX.com" style="vertical-align: -4px;" height="18" width="78">
+ in all 3 cases (worst, average and best) as merge sort always divides 
+the array in two halves and take linear time to merge two halves.</p>
+<p><strong>Auxiliary Space:</strong> O(n)</p>
+<p><strong>Algorithmic Paradigm: </strong> Divide and Conquer</p>
+<p><strong>Sorting In Place:</strong> No in a typical implementation</p>
+<p><strong>Stable:</strong> Yes</p>
+<p><strong>Applications of Merge Sort</strong></p>
+<ol>
+<li><a href="http://www.geeksforgeeks.org/merge-sort-for-linked-list/" target="_blank">Merge Sort is useful for sorting linked lists in O(nLogn) time</a>.In
+ case of linked lists the case is different mainly due to difference in 
+memory allocation of arrays and linked lists. Unlike arrays, linked list
+ nodes may not be adjacent in memory. Unlike array, in linked list, we 
+can insert items in the middle in O(1) extra space and O(1) time. 
+Therefore merge operation of merge sort can be implemented without extra
+ space for linked lists.<p></p>
+<p>In arrays, we can do random access as elements are continuous in 
+memory. Let us say we have an integer (4-byte) array A and let the 
+address of A[0] be x then to access A[i], we can directly access the 
+memory at (x + i*4). Unlike arrays, we can not do random access in 
+linked list. Quick Sort requires a lot of this kind of access. In linked
+ list to access i’th index, we have to travel each and every node from 
+the head to i’th node as we don’t have continuous block of memory. 
+Therefore, the overhead increases for quick sort. Merge sort accesses 
+data sequentially and the need of random access is low.  </p></li>
+<li><a href="http://www.geeksforgeeks.org/counting-inversions/">Inversion Count Problem</a> </li>
+<li> Used in <a href="http://en.wikipedia.org/wiki/External_sorting" target="_blank">External Sorting</a></li>
+</ol>
+<p>&nbsp;</p>
+<h2><a href="http://geeksquiz.com/quiz-mergesort/">Quiz on Merge Sort</a></h2>
+<p>&nbsp;</p>
+<p><strong>Other Sorting Algorithms on GeeksforGeeks/GeeksQuiz:</strong><br>
+<a href="http://geeksquiz.com/selection-sort/" target="_blank">Selection Sort</a>, <a href="http://geeksquiz.com/bubble-sort/" target="_blank">Bubble Sort</a>, <a href="http://geeksquiz.com/insertion-sort/" target="_blank">Insertion Sort</a>, <a href="http://geeksquiz.com/merge-sort/" target="_blank">Merge Sort</a>, <a href="http://geeksquiz.com/heap-sort/" target="_blank">Heap Sort</a>, <a href="http://geeksquiz.com/quick-sort/" target="_blank">QuickSort</a>, <a href="http://www.geeksforgeeks.org/radix-sort/">Radix Sort</a>,  <a href="http://www.geeksforgeeks.org/counting-sort/">Counting Sort</a>,  <a title="Permanent link to Bucket Sort" href="http://www.geeksforgeeks.org/bucket-sort-2/" rel="bookmark">Bucket Sort</a>,  <a title="Permanent link to ShellSort" href="http://geeksquiz.com/shellsort/" rel="bookmark">ShellSort</a>,  <a title="Permalink to Comb Sort" href="http://www.geeksforgeeks.org/comb-sort/" rel="bookmark">Comb Sort</a><br>
+&nbsp;</p>
+<h2><a href="http://www.practice.geeksforgeeks.org/tag-page.php?tag=sorting&amp;isCmp=0">Coding practice for sorting.</a></h2>
+<p>&nbsp;<br>
+<br><br><br>
+Please write comments if you find anything incorrect, or you want to share more information about the topic discussed above.</p>
+
+			
+See <a href="http://geeksquiz.com/gate-corner-2/">GATE Corner</a> for all information about GATE CS and <a href="http://geeksquiz.com/quiz-corner/">Quiz Corner</a> for all Quizzes on GeeksQuiz.
+
+<script async="" src="Merge%20Sort%20-%20GeeksQuiz_files/adsbygoogle.js"></script>
+<!-- pageBottomLargeRectangle -->
+<ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-3708767432475742" data-ad-slot="7367206910"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="280" width="336"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+		</div><!-- .entry-content -->
+				
+		
+
+		<footer class="entry-meta">
+		<span>Category: <a href="http://geeksquiz.com/category/articles/algorithms-articles/sorting/" rel="category tag">Searching and Sorting</a></span> <span></span> 
+           	          	
+					</footer><!-- .entry-meta -->
+	</article><!-- #post -->
+                 
+<!-- Added on 29 Oct 2015 for next and previous from same category -->
+<nav class="nav-single">
+					<div class="assistive-text">Post navigation</div>
+					<span class="nav-previous"><a href="http://geeksquiz.com/insertion-sort/" rel="prev">Previous post in category</a></span>
+					<span class="nav-next"><a href="http://geeksquiz.com/heap-sort/" rel="next">Next post in category</a></span>
+				</nav><!-- .nav-single -->
+
+<div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="Merge%20Sort%20-%20GeeksQuiz_files/xd_arbiter.htm" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" scrolling="no" allowfullscreen="true" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0"></iframe><iframe src="Merge%20Sort%20-%20GeeksQuiz_files/xd_arbiter_002.htm" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" scrolling="no" allowfullscreen="true" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div fb-iframe-plugin-query="app_id=&amp;container_width=656&amp;href=http%3A%2F%2Fgeeksquiz.com%2Fmerge-sort%2F&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true&amp;width=450" fb-xfbml-state="rendered" class="fb-like fb_iframe_widget" data-share="true" data-width="450" data-show-faces="true"><span style="vertical-align: bottom; width: 450px; height: 25px;"><iframe class="" src="http://www.facebook.com/v2.5/plugins/like.php?app_id=&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D42%23cb%3Df3c7f7a09541aa8%26domain%3Dgeeksquiz.com%26origin%3Dhttp%253A%252F%252Fgeeksquiz.com%252Ff5b970dd3b5a26%26relation%3Dparent.parent&amp;container_width=656&amp;href=http%3A%2F%2Fgeeksquiz.com%2Fmerge-sort%2F&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true&amp;width=450" style="border: medium none; visibility: visible; width: 450px; height: 25px;" title="fb:like Facebook Social Plugin" scrolling="no" allowfullscreen="true" allowtransparency="true" name="f2e98803a47cbb4" frameborder="0" height="1000px" width="450px"></iframe></span></div>
+
+				
+<div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="Merge%20Sort%20-%20GeeksQuiz_files/a_002.htm" style="width: 1px ! important; min-width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 7960px ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" name="dsq-app2" id="dsq-app2" frameborder="0" width="100%"></iframe><iframe style="width: 656px ! important; border: medium none ! important; overflow: hidden ! important; top: 0px ! important; min-width: 656px ! important; max-width: 656px ! important; position: fixed ! important; z-index: 2147483646 ! important; height: 29px ! important; min-height: 29px ! important; max-height: 29px ! important; display: none ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" name="indicator-north" id="indicator-north" frameborder="0"></iframe><iframe style="width: 656px ! important; border: medium none ! important; overflow: hidden ! important; bottom: 0px ! important; min-width: 656px ! important; max-width: 656px ! important; position: fixed ! important; z-index: 2147483646 ! important; height: 29px ! important; min-height: 29px ! important; max-height: 29px ! important; display: none ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" name="indicator-south" id="indicator-south" frameborder="0"></iframe></div>
+
+<script type="text/javascript">
+var disqus_url = 'http://geeksquiz.com/merge-sort/';
+var disqus_identifier = '2783 http://geeksquiz.com/?p=2783';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'geeksquiz';
+var disqus_title = "Merge Sort";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+    
+    
+    this.language = '';
+    
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+			<div id="secondary" class="widget-area" role="complementary">
+			<aside id="text-21" class="widget widget_text">			<div class="textwidget"><div fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=298&amp;height=150&amp;hide_cover=true&amp;href=https%3A%2F%2Fwww.facebook.com%2FGeeksquiz%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=true&amp;tabs=timeline" fb-xfbml-state="rendered" class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/Geeksquiz/" data-tabs="timeline" data-height="150" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><span style="vertical-align: bottom; width: 298px; height: 150px;"><iframe class="" src="http://www.facebook.com/v2.5/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D42%23cb%3Df2f67b4732566b%26domain%3Dgeeksquiz.com%26origin%3Dhttp%253A%252F%252Fgeeksquiz.com%252Ff5b970dd3b5a26%26relation%3Dparent.parent&amp;container_width=298&amp;height=150&amp;hide_cover=true&amp;href=https%3A%2F%2Fwww.facebook.com%2FGeeksquiz%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=true&amp;tabs=timeline" style="border: medium none; visibility: visible; width: 298px; height: 150px;" title="fb:page Facebook Social Plugin" scrolling="no" allowfullscreen="true" allowtransparency="true" name="f25dd1923d5ca3" frameborder="0" height="150px" width="1000px"></iframe></span></div></div>
+		</aside><aside id="text-9" class="widget widget_text">			<div class="textwidget"><script async="" src="Merge%20Sort%20-%20GeeksQuiz_files/adsbygoogle.js"></script>
+<!-- LargeSkyScraper -->
+<ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-3708767432475742" data-ad-slot="1597824119"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="600" width="300"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</aside><aside id="text-4" class="widget widget_text">			<div class="textwidget"><form style="border:1px #ccc;padding:2px;text-align:left;" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=Geeksquiz', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><p>Subscribe and Never Miss an Article</p><input style="width:140px" placeholder="Email Address" name="email" type="text"><input value="Geeksquiz" name="uri" type="hidden"><input name="loc" value="en_US" type="hidden">&nbsp;&nbsp;<input style="background-color: #4cb96b;" value="Subscribe" type="submit"><input value="1461345475 128.210.106.68" name="bb2_screener_" type="hidden"></form></div>
+		</aside><aside id="text-8" class="widget widget_text">			<div class="textwidget"><script async="" src="Merge%20Sort%20-%20GeeksQuiz_files/adsbygoogle.js"></script>
+<!-- LargeRectangle -->
+<ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-3708767432475742" data-ad-slot="7436936511"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="280" width="336"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<p class="widget-title">Recent Posts</p>		<ul>
+					<li>
+				<a href="http://geeksquiz.com/placements-reasoning-puzzles/">Placements | Reasoning | Puzzles</a>
+						</li>
+					<li>
+				<a href="http://geeksquiz.com/placements-reasoning-data-sufficiency/">Placements | Reasoning | Data Sufficiency</a>
+						</li>
+					<li>
+				<a href="http://geeksquiz.com/placements-reasoning-syllogism/">Placements | Reasoning | Syllogism</a>
+						</li>
+					<li>
+				<a href="http://geeksquiz.com/placements-reasoning-series/">Placements | Reasoning | Series</a>
+						</li>
+					<li>
+				<a href="http://geeksquiz.com/placements-reasoning-assumptions-and-conclusions-courses-of-action/">Placements | Reasoning | Assumptions and Conclusions, Courses of Action</a>
+						</li>
+				</ul>
+		</aside><aside id="text-17" class="widget widget_text"><p class="widget-title">Popular Posts/Pages</p>			<div class="textwidget"><p><b><a href="http://geeksquiz.com/gate-corner-2/">GATE CS Corner </a></b><br>
+<a href="http://geeksquiz.com/commonly-asked-c-programming-interview-questions-set-1/">Commonly Asked C Programming Interview Questions </a><br>
+<a href="http://geeksquiz.com/c-language-2/pointers/">Pointers in C</a><br>
+<a href="http://geeksquiz.com/puzzle-21-3-ants-and-triangle/">3 Ants and Triangle Puzzle</a><br>
+<a href="http://geeksquiz.com/gate-cs-2015-set-1/">GATE-CS-2015(Set1)</a><br>
+<a href="http://geeksquiz.com/gate-cs-2015-set-2/">GATE-CS-2015(Set2)</a><br>
+<a href="http://geeksquiz.com/gate-cs-2015-set-3/">GATE-CS-2015(Set3)</a></p>
+</div>
+		</aside><aside id="text-7" class="widget widget_text"><p class="widget-title">Recent Discussions</p>			<div class="textwidget"><script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/recent_comments_widget.js"></script> <style type="text/css" media="screen">	 .dsq-widget ul.dsq-widget-list {	 padding: 0;	 margin: 0;	 text-align: left;	 }	 img.dsq-widget-avatar {	 width: 32px;	 height: 32px;	 border: 0px;	 margin: 0px;	 padding: 0px 3px 3px 0px;	 float: left;	 }	 a.dsq-widget-user {	 font-weight: bold;	 }	 a.dsq-widget-thread {	 font-weight: bold;	 }	 p.dsq-widget-meta {	 clear: both;	 font-size: 80%;	 padding: 0;	 margin: 0;	 }	 li.dsq-widget-item {	 margin: 15px 0;	 list-style-type: none;	 clear: both;	 }	 span.dsq-widget-clout {	 padding: 0 2px;	 background-color: #ff7300;	 color: #fff;	 }	 table.dsq-widget-horiz td {	 padding-right: 15px;	 }	 .dsq-widget-comment p {	 display: inline;	 }	 </style>	 <ul class="dsq-widget-list">	 <li class="dsq-widget-item">	 <a class="dsq-widget-user" href="https://disqus.com/by/gopalbhattrai/">GOPAL BHATTRAI</a>	 <span class="dsq-widget-comment"><p>Answer should be O (nlog n) as heap may contain...</p></span>	 <p class="dsq-widget-meta"><a href="http://geeksquiz.com/data-structures-heap-question-8/">Data Structures | Heap | Question 8</a>&nbsp;·&nbsp;<a href="http://geeksquiz.com/data-structures-heap-question-8/#comment-2638167127">3 hours ago</a></p>	 </li>	 <li class="dsq-widget-item">	 Purva Gupta	 <span class="dsq-widget-comment"><p>please explain how this pairing is done...??</p></span>	 <p class="dsq-widget-meta"><a href="http://geeksquiz.com/gate-gate-cs-2006-question-38/">GATE | GATE-CS-2006 | Question 38</a>&nbsp;·&nbsp;<a href="http://geeksquiz.com/gate-gate-cs-2006-question-38/#comment-2637724307">9 hours ago</a></p>	 </li>	 <li class="dsq-widget-item">	 arun singh	 <span class="dsq-widget-comment"><p>how it's possible if possiblee then give...</p></span>	 <p class="dsq-widget-meta"><a href="http://geeksquiz.com/c-language-set-1-introduction/">C Language Introduction</a>&nbsp;·&nbsp;<a href="http://geeksquiz.com/c-language-set-1-introduction/#comment-2637570764">10 hours ago</a></p>	 </li>	 <li class="dsq-widget-item">	 <a class="dsq-widget-user" href="https://disqus.com/by/Ivnat/">Ivnat</a>	 <span class="dsq-widget-comment"><p>It is valid. The output will be 1292982</p></span>	 <p class="dsq-widget-meta"><a href="http://geeksquiz.com/remove-recurring-digits-in-a-given-number/">Remove recurring digits in a given number</a>&nbsp;·&nbsp;<a href="http://geeksquiz.com/remove-recurring-digits-in-a-given-number/#comment-2637323431">13 hours ago</a></p>	 </li>	 <li class="dsq-widget-item">	 <a class="dsq-widget-user" href="https://disqus.com/by/adityakuppa/">aditya kuppa</a>	 <span class="dsq-widget-comment"><p>How can b) be d answer..coz wen we throw...</p></span>	 <p class="dsq-widget-meta"><a href="http://geeksquiz.com/c-exception-handling-question-4/">C++ | Exception Handling | Question 4</a>&nbsp;·&nbsp;<a href="http://geeksquiz.com/c-exception-handling-question-4/#comment-2636595055">1 day ago</a></p>	 </li>	 <li class="dsq-widget-item">	 <a class="dsq-widget-user" href="https://disqus.com/by/shobhitpant/">Shobhit Pant</a>	 <span class="dsq-widget-comment"><p>Why not exactly 30, why 28?</p></span>	 <p class="dsq-widget-meta"><a href="http://geeksquiz.com/gate-gate-cs-2014-set-1-question-36/">GATE | GATE-CS-2014-(Set-1) | Question 36</a>&nbsp;·&nbsp;<a href="http://geeksquiz.com/gate-gate-cs-2014-set-1-question-36/#comment-2636522196">1 day ago</a></p>	 </li>	 </ul></div>
+		</aside><aside id="categories-3" class="widget widget_categories"><p class="widget-title">Categories</p><label class="screen-reader-text" for="cat">Categories</label><select name="cat" id="cat" class="postform">
+	<option selected="selected" value="-1">Select Category</option>
+	<option class="level-0" value="107">Articles</option>
+	<option class="level-1" value="216">&nbsp;&nbsp;&nbsp;Algorithms</option>
+	<option class="level-2" value="318">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Searching and Sorting</option>
+	<option class="level-1" value="158">&nbsp;&nbsp;&nbsp;C</option>
+	<option class="level-1" value="203">&nbsp;&nbsp;&nbsp;C++</option>
+	<option class="level-1" value="257">&nbsp;&nbsp;&nbsp;Compiler Design</option>
+	<option class="level-1" value="256">&nbsp;&nbsp;&nbsp;Computer Networks</option>
+	<option class="level-1" value="317">&nbsp;&nbsp;&nbsp;Computer Organization and Architecture</option>
+	<option class="level-1" value="18">&nbsp;&nbsp;&nbsp;Data Structures</option>
+	<option class="level-2" value="310">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hash</option>
+	<option class="level-2" value="305">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linked List</option>
+	<option class="level-2" value="309">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Queue</option>
+	<option class="level-2" value="308">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stack</option>
+	<option class="level-2" value="304">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tree</option>
+	<option class="level-1" value="159">&nbsp;&nbsp;&nbsp;DBMS</option>
+	<option class="level-1" value="323">&nbsp;&nbsp;&nbsp;Difference</option>
+	<option class="level-1" value="264">&nbsp;&nbsp;&nbsp;Digital Electronic</option>
+	<option class="level-1" value="188">&nbsp;&nbsp;&nbsp;Digital Logic</option>
+	<option class="level-1" value="225">&nbsp;&nbsp;&nbsp;Interview Experiences</option>
+	<option class="level-1" value="214">&nbsp;&nbsp;&nbsp;Java</option>
+	<option class="level-1" value="254">&nbsp;&nbsp;&nbsp;Mathematics</option>
+	<option class="level-1" value="196">&nbsp;&nbsp;&nbsp;Operating Systems</option>
+	<option class="level-1" value="366">&nbsp;&nbsp;&nbsp;Placements</option>
+	<option class="level-2" value="388">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DI – Placements</option>
+	<option class="level-2" value="367">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QA – Placements</option>
+	<option class="level-2" value="368">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reasoning – Placements</option>
+	<option class="level-1" value="247">&nbsp;&nbsp;&nbsp;Puzzle</option>
+	<option class="level-1" value="319">&nbsp;&nbsp;&nbsp;Python</option>
+	<option class="level-1" value="350">&nbsp;&nbsp;&nbsp;Python Articles</option>
+	<option class="level-1" value="185">&nbsp;&nbsp;&nbsp;Theory of Computation</option>
+	<option class="level-0" value="269">Library</option>
+	<option class="level-1" value="270">&nbsp;&nbsp;&nbsp;C</option>
+	<option class="level-0" value="195">Programs</option>
+	<option class="level-0" value="112">Quizzes</option>
+	<option class="level-1" value="178">&nbsp;&nbsp;&nbsp;Aptitude</option>
+	<option class="level-1" value="113">&nbsp;&nbsp;&nbsp;Computer Science Quizzes</option>
+	<option class="level-2" value="14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Algorithms</option>
+	<option class="level-2" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C</option>
+	<option class="level-2" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C++</option>
+	<option class="level-2" value="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computer Networks</option>
+	<option class="level-2" value="200">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computer Organization and Architecture</option>
+	<option class="level-2" value="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data Structures</option>
+	<option class="level-2" value="11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DBMS</option>
+	<option class="level-2" value="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GATE</option>
+	<option class="level-2" value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java</option>
+	<option class="level-2" value="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operating Systems</option>
+	<option class="level-1" value="332">&nbsp;&nbsp;&nbsp;Python-Quizzes</option>
+	<option class="level-1" value="374">&nbsp;&nbsp;&nbsp;QA – Placement Quizzes</option>
+	<option class="level-1" value="187">&nbsp;&nbsp;&nbsp;Web technologies</option>
+	<option class="level-0" value="1">Uncategorized</option>
+	<option class="level-0" value="190">Web Technology</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			location.href = "http://geeksquiz.com/?cat=" + dropdown.options[ dropdown.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+</aside>		</div><!-- #secondary -->
+		</div><!-- #main .wrapper -->
+	<footer id="colophon" role="contentinfo">
+		<div class="site-info">
+		<div class="clear"></div>
+		</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+<center>
+<div class="iconic-footer">
+
+@geeksforgeeks &nbsp;&nbsp;<a href="http://creativecommons.org/licenses/by-nc-nd/2.5/in/deed.en_US" title="Valid XHTML Strict 1.0">Some rights reserved</a>  <a href="http://www.geeksforgeeks.org/about/contact-us/"> &nbsp; &nbsp; &nbsp; &nbsp;Contact Us!</a>  <a href="http://www.geeksforgeeks.org/about/"> &nbsp; &nbsp; &nbsp; &nbsp;About Us!&nbsp; &nbsp; &nbsp; &nbsp;</a>
+
+			</div></center><!-- .site-info -->
+				<div class="clear"></div>
+</div><!-- #page -->
+
+        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'geeksquiz';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1) {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script'); 
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        <script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/shCore.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/shBrushJava.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/shBrushPython.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://d3guuwhmbtzoxp.cloudfront.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://d3guuwhmbtzoxp.cloudfront.net/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<link rel="stylesheet" id="tabby-print-css" href="Merge%20Sort%20-%20GeeksQuiz_files/tabby-print.css" type="text/css" media="all">
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/comment-reply.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/selectnav.js"></script>
+<script type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/tabby.js"></script>
+
+<script>jQuery(document).ready(function($) { RESPONSIVEUI.responsiveTabs(); })</script>
+
+
+<script type="text/javascript">
+// Code for google analytics
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37433965-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>       
+<script async="" type="text/javascript" src="Merge%20Sort%20-%20GeeksQuiz_files/fancybar.js" id="_fancybar_js"></script>
+
+
+
+
+<table class="gstl_50 gssb_c" style="width: 253px; display: none; top: 77px; left: 893px; position: absolute;" cellpadding="0" cellspacing="0"><tbody><tr><td class="gssb_f"></td><td style="width: 100%;" class="gssb_e"></td></tr></tbody></table></body></html>
+<!-- Dynamic page generated in 0.424 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-04-22 17:17:56 -->
+<!-- super cache -->
