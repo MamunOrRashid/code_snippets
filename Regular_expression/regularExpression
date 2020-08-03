@@ -1,0 +1,107 @@
+Q1: match words end with t, except bat.
+cat
+mat
+pat
+bat
+		# [^b]at
+
+Q2: Match below number.
+
+800-556-4321
+900.555.1234 
+		# \d{3}.\d{3}.\d{4}
+
+Q3: Name start with Mr
+Mr. Mamun
+Mr Smith
+Ms Davis
+Mr T
+		# Mr\.?\s[A-Z]\w*
+
+Q4: Name start with Mrs or Ms
+Mr. Mamun
+Mr Smith
+Ms Davis 
+Mrs. Robinson
+Mr T	
+		# M[r]?s\.?\s[A-Z]\w+
+
+Q5: Name start with Mr or Mrs or Ms
+Mr. Mamun
+Mr Smith
+Ms Davis 
+Mrs. Robinson
+Mr T
+		# M(r|s|rs)\.?\s[A-Z]\w*
+
+Q6: Match below
+CoreyMSchafer@gmail.com
+corey.schafer@university.edu
+corey-321-schafer@my-work.net
+
+		# [a-zA-Z0-9.-]+@[a-zA-Z-]+\.(com|edu|net)
+	# [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+
+
+
+Q7:
+
+https://www.google.com
+http://coreyms.com
+https://youtube.com
+https://www.nasa.gov
+	# https?:\/\/(www\.)?\w+\.?\w+
+	# https?:\/\/(www\.)?(\w+)(\.\w+)
+
+
+..............................
+
+
+
+Mr. Mamun
+Mr Smith
+Ms Davis 
+Mrs. Robinson
+Mr T
+
+
+
+
+"\[ ] ^ - ? . * + | ( ) $ / { } % < >
+If aboves are to be used as text characters, an escape should be used
+	\$	= "$"
+	\\ 	= "\"
+
+Every character but blank, tab (\t), newline (\n) and the list above is always a text character.
+
+800-556-4321
+900.555.1234
+123.555-1234
+
+Ha HaHa Ha.
+\d
+\D
+\s
+\S
+\bHa\b #means first match
+\BHa  #means which not match before.
+^Ha   #match string from begining line
+
+\d\d\d.\d\d\d.\d\d\d\d[\w]* #match 123.555.1234khan
+\d\d\d[-.]\d\d\d[-.]\d\d\d\d #123.555.1234
+[\d]*[-.][\d]*[-.][\d]*     #123.555.1234
+
+800-556-4321
+900.555.1234
+123.555-1234
+        # [89]00[-.]\d\d\d[-.]\d\d\d\d
+		# [a-zA-z]
+abcd
+ABCD    # [^A-Z]
+
+
+
+
+
+
+
+
