@@ -1,0 +1,6 @@
+git checkout -b dummy //create
+git branch
+git checkout master
+git branch
+git branch -d dummy // delete
+git branch

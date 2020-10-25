@@ -1,0 +1,20 @@
+/Downloads/android-studio/bin$ sudo chmod 777 -R studio.sh
+/Downloads/android-studio/bin$ ./studio.sh
+
+$ adb kill-server
+mp@mamun:~$ sudo adb start-server
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+mp@mamun:~$ sudo adb devices
+List of devices attached
+AVY9KA96A2900371	unauthorized
+
+mp@mamun:~$ sudo adb devices
+List of devices attached
+AVY9KA96A2900371	device
+
+mp@mamun:~$ sudo adb devices
+List of devices attached
+AVY9KA96A2900371	device
+
+

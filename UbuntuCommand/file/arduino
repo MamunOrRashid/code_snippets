@@ -1,0 +1,6 @@
+sudo su
+cd /
+cd dev
+chmod 777 -R kvm
+chmod 777 -R ttyACM0
+

@@ -1,0 +1,5 @@
+ sudo dmidecode --type 17
+sudo dmidecode -t 17
+
+cat /proc/cpuinfo
+

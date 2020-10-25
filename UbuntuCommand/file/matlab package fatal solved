@@ -1,0 +1,2 @@
+rm /var/lib/dpkg/info/$nomdupaquet* -f
+

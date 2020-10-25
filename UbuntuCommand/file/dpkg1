@@ -1,0 +1,29 @@
+sudo apt-get upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following package was automatically installed and is no longer required:
+  libllvm7
+Use 'sudo apt autoremove' to remove it.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+5 not fully installed or removed.
+After this operation, 0 B of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Setting up gconf2-common (3.2.6-4ubuntu1) ...
+Setting up libgconf-2-4:amd64 (3.2.6-4ubuntu1) ...
+Setting up gconf-service-backend (3.2.6-4ubuntu1) ...
+Setting up gconf-service (3.2.6-4ubuntu1) ...
+Setting up gconf2 (3.2.6-4ubuntu1) ...
+W: APT had planned for dpkg to do more than it reported back (12 vs 16).
+   Affected packages: gconf2-common:amd64
+
+mp@mp:~$ sudo apt autoremove
+mp@mp:~$ sudo apt-get update
+
+mp@mp:~$ sudo apt-get upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.

@@ -1,0 +1,22 @@
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+
+sudo dpkg --configure -a
+
+
+Or,
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+
+sudo dpkg --configure -a
+sudo apt upgrade
+sudo apt update
+
+sudo apt upgrade
+sudo apt-get update
+sudo apt install build-essential
+sudo apt install gcc
+gcc --version
+
